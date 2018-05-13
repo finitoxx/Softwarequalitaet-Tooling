@@ -66,6 +66,33 @@ Einbinden mit:
   </body>
 </html>
 ```
+Dies bindet uns die Jasmine-Bibliothek sowie das Jasmine HTML-Bootskript und Styling ein.
+---
+# Der erste Test
+- Test wird definiert bevor die Funktion geschrieben wird(->TDD)
+```javascript
+describe("isPalindrome", () => {
+  it("returns true if the string is a palindrome", () => {
+    expect(isPalindrome("abba")).toEqual(true);
+  });
+});
+```
+Wenn die Seite geladen wird, wird die Jasmine Report Seite angezeigt
+---
+# Erfüllen des ersten Tests
+- Wir fügen nun einfach folgende Funktion ein:
+```javascript
+const isPalindrome = (str) => {
+  return str
+    .split("")
+    .reverse()
+    .join("") === str;
+};
+```
+Der Test wird nun erfüllt! Jetzt kann man noch weitere Spezifikationen hinzufügen und die Implementation weiter anpassen. Der Test wird dann immer die Grundfunktionalität überprüfen.
+
+- Man kann nun die Tests erweitern und dann mithilfe von Refactoring die Tests wieder erfüllen!
+- Dies sorgt für eine saubere und ordentliche Programmierweise
 ---
 class: center, middle
 
