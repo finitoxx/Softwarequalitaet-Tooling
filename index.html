@@ -39,6 +39,34 @@ class: center, middle
 - TDD(Test-Driven-Development) bietet sich an, da man hier auch gut die Andorderungen in die Tests integrieren kann
 
 ---
+# Warum Funktionale Tests?
+
+- Mit funktionalem Programmieren lassen sich leichter Tests schreiben (Funktionale Tests)
+- Programme die eng miteinander verkettet sind und viel auf globale Variablen arbeiten sind sehr schwer zu testen
+- Pure Functions  sind leicht austauschbar,wiederverwendbar und eignene sich sehr gut für funktionale Tests
+- -> Sie sind nicht abhängig von externen Verhalten oder Variablen
+- -> Sie verursachen keine Nebeneffekte oder verändern externe Variablen
+- -> Sie geben immer das selbe Resultat bei gleichem Input aus
+---
+# Jasmine
+Einbinden mit:
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Jasmine Test</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine.min.css">
+  </head>
+  <body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine-html.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/boot.min.js"></script>
+  </body>
+</html>
+```
+---
 class: center, middle
 
 # Mocha-Chai und Sinonjs
