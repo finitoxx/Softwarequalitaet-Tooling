@@ -96,8 +96,26 @@ Der Test wird nun erfüllt! Jetzt kann man noch weitere Spezifikationen hinzufü
 ---
 class: center, middle
 
-# Mocha-Chai und Sinonjs
+# Mocha,Chai und Sinonjs
 
+---
+# Mocha
+- Mocha ist dafür da um Tests auszuführen
+- Installieren mit __npm install -g mocha__
+- Syntax für einen Assert-Test:
+
+```javascript
+const assert = require("assert");
+
+describe("smoke test", function() {
+  it("checks equality", function() {
+    assert.equal(true, true);
+  });
+});
+```
+- Da Assert in Nodejs enthalten ist, ist kein npm install notwendig
+- Zum Ausführen reicht dann __mocha tests/__
+- Nun kriegt man entweder eine Nachricht, dass es funktioniert hat, oder eine Fehlermeldung, die sagt, was falsch lief
 ---
 class: center, middle
 
