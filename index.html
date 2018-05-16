@@ -154,7 +154,7 @@ describe("smoke test", function() {
 	describe("AppController", function()  {
 	describe("getIndexPage", function() {
 		it("should send hey", function() {
-		let req = {}// Have `res` have a send key with a function value coz we use `res.send()` in our func
+		let req = {}
 		let res = {
 			send: sinon.spy()
 		}
@@ -176,13 +176,112 @@ describe("smoke test", function() {
 	});
 ```
 ---
+# Stubs
+- Stubs ersetzen eine Methoden
+- So kann man den Input und Output der Methode verändern
+- z.b. HTTP-Calls oder das Werfen von Fehlern
+- So kann auf jedes Event getestet werden
+---
+# Beispiel für Stubs
+```javascript
+	const isLoggedInStub = sinon.stub(user, "isLoggedIn").returns(false);
+```
+- Man übergibt hier eine Methode an den Stub 
+- Dieser ersetzt nun die übergebene Methode und man kann mit dem Testen beginnen
+---
+# Mocks
+- Mit Mocks können wir spezifizieren wie de Test aussehen soll
+- Mit __mock.verify__ kann das Ergebnis dann geprüft werden
 
+```javascript
+	// mock res
+      const mock = sinon.mock(res);
+      // build how we expect it to work
+      mock.expects("send").once().withExactArgs("Hey");
+
+      indexPage.getIndexPage(req, res);
+      expect(isLoggedInStub.calledOnce).to.be.true;
+
+      // verify that mock works as expected
+      mock.verify();
+```
+---
 class: center, middle
 
 # Jest
 
+---
+# Was sind Snapshot Tests?
+- Verifiziert, dass ein Stück Funktionalität genauso Funktioniert wie der Snapshot, der davon gemacht wurde
+- Sozusagen ein "Bild" von einer App in einem bestimmten Zustand und an dem Bild wird dann verglichen
+- Snapshot Tests funktionieren nur, wenn die Komponente die getestet werden soll schon funktioniert
+- -> Gegenteil von TDD
 
+---
+# Jest Einführung
+- Jest nutzt expect-Funktionen, sowie Mocks und Spies
+- Außerdem hat Jest ein Snapshot-Testing Feature
+- Jest wird die Tests nur ausführen, wenn sich die Dateien geändert haben
+- Es wird außerdem auch die Tests für die Dateien ausführen, die die geänderte Datei importiert haben
+- Wenn Snapshots nicht mehr gebraucht werden, kann man sie mit der Taste "u" entfernen
+---
+# Wie schreibt man einen Snapshot Test
+- Installieren des Snapshot Renderers mit:
+```javascript
+	npm install --save-dev react-test-renderer
+```
+- Danach kann man in die Test-Datei __import renderer from 'react-test-renderer';__ einfügen
+---
+- Der erste richtige Snapshot Test sieht dann so aus:
+```javascript
+	it('renders a snapshot', () => {
+	const tree = renderer.create(<App/>).toJSON();
+	expect(tree).toMatchSnapshot();
+	});
+```
+- Es wird eine JSON abgespeichert. Diese lässt sich einfacher mit anderen Snapshots vergleichen
+- Mit __toMatchSnapshot__ wird dann mit dem existierenden Snapshot verglichen
+- Wenn kein Snapshot existiert wird mit der Methode einer erstellt
+---
+- Ein Snapshot sieht dann ungefähr so aus:
+```html
+exports[`test renders a snapshot 1`] = `
+<div
+  className="App">
+  <div
+    className="App-header">
+    <img
+      alt="logo"
+      className="App-logo"
+      src="test-file-stub" />
+    <h2>
+      Welcome to React
+    </h2>
+  </div>
+  <p
+    className="App-intro">
+    To get started, edit
+    <code>
+      src/App.js
+    </code>
+     and save to reload.
+  </p>
+</div>
+`;
+```
+---
+# Ausführen von Snapshot Tests
+- mit __npm test__ werden Snapshot Tests ausgeführt
+- Sollte der Test fehlschlagen, werden die Differenzen zwischen dem Snapshot und dem aktuellen Ergebnis angezeigt
+- Grüne Markierung bedeutet, dass die Zeilen erwartet wurden, aber diese nicht da sind
+- Rote Markierung bedeutet, dass die Zeilen nicht erwartet wurden, aber diese da sind
+- Graue Markierung bedeutet, dass alles korrekt ist
+- Wenn man einen Snapshot updaten möchte, muss man die Taste "u" drücken, um den Snaoshot zu aktualisieren
 
+---
+# Fazit 
+Es gibt viele Tools zum testen von Javascript. Testen ist wichtig, um dafür zu sorgen, dass der Code 
+gut wartbar ist und er immer die erforderlichen Funktionalitäten erfüllt. 
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
