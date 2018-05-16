@@ -178,7 +178,7 @@ describe("smoke test", function() {
 ---
 # Stubs
 - Stubs ersetzen eine Methoden
-- So kann man den Input und Output der Methode verändern
+- So kann man den __Input__ und __Output__ der Methode verändern
 - z.b. HTTP-Calls oder das Werfen von Fehlern
 - So kann auf jedes Event getestet werden
 ---
@@ -213,15 +213,15 @@ class: center, middle
 ---
 # Was sind Snapshot Tests?
 - Verifiziert, dass ein Stück Funktionalität genauso Funktioniert wie der Snapshot, der davon gemacht wurde
-- Sozusagen ein "Bild" von einer App in einem bestimmten Zustand und an dem Bild wird dann verglichen
+- Sozusagen ein __"Bild"__ von einer App in einem bestimmten Zustand und an dem Bild wird dann verglichen
 - Snapshot Tests funktionieren nur, wenn die Komponente die getestet werden soll schon funktioniert
-- -> Gegenteil von TDD
+- __-> Gegenteil von TDD__
 
 ---
 # Jest Einführung
-- Jest nutzt expect-Funktionen, sowie Mocks und Spies
+- Jest nutzt __expect-Funktionen__, sowie __Mocks__ und __Spies__
 - Außerdem hat Jest ein Snapshot-Testing Feature
-- Jest wird die Tests nur ausführen, wenn sich die Dateien geändert haben
+- Jest wird die Tests nur ausführen, wenn sich die Dateien __geändert__ haben
 - Es wird außerdem auch die Tests für die Dateien ausführen, die die geänderte Datei importiert haben
 - Wenn Snapshots nicht mehr gebraucht werden, kann man sie mit der Taste "u" entfernen
 ---
@@ -239,7 +239,7 @@ class: center, middle
 	expect(tree).toMatchSnapshot();
 	});
 ```
-- Es wird eine JSON abgespeichert. Diese lässt sich einfacher mit anderen Snapshots vergleichen
+- Es wird eine __JSON__ abgespeichert. Diese lässt sich einfacher mit anderen Snapshots vergleichen
 - Mit __toMatchSnapshot__ wird dann mit dem existierenden Snapshot verglichen
 - Wenn kein Snapshot existiert wird mit der Methode einer erstellt
 ---
@@ -273,15 +273,18 @@ exports[`test renders a snapshot 1`] = `
 # Ausführen von Snapshot Tests
 - mit __npm test__ werden Snapshot Tests ausgeführt
 - Sollte der Test fehlschlagen, werden die Differenzen zwischen dem Snapshot und dem aktuellen Ergebnis angezeigt
-- Grüne Markierung bedeutet, dass die Zeilen erwartet wurden, aber diese nicht da sind
-- Rote Markierung bedeutet, dass die Zeilen nicht erwartet wurden, aber diese da sind
-- Graue Markierung bedeutet, dass alles korrekt ist
+- __Grüne__ Markierung bedeutet, dass die Zeilen erwartet wurden, aber diese nicht da sind
+- __Rote__ Markierung bedeutet, dass die Zeilen nicht erwartet wurden, aber diese da sind
+- __Graue__ Markierung bedeutet, dass alles korrekt ist
 - Wenn man einen Snapshot updaten möchte, muss man die Taste "u" drücken, um den Snaoshot zu aktualisieren
 
 ---
 # Fazit 
 Es gibt viele Tools zum testen von Javascript. Testen ist wichtig, um dafür zu sorgen, dass der Code 
-gut wartbar ist und er immer die erforderlichen Funktionalitäten erfüllt. 
+gut wartbar ist und er immer die erforderlichen Funktionalitäten erfüllt. Man kann entweder dem Test-Driven-Development folgen
+oder auf andere Methoden wie dem Snapshot-Testing aufbauen. Bei dem TDD ist der Vorteil, dass man die Vorraussetzungen der Funktionen mit den Kunden besprechen kann,
+und so sehr kundennah die Tests entwickeln kann. Beim Snapshot-Testing ist eine funktionierende Komponente erforderlich, damit ein Snapshot erstellt werden kann.
+Das Programm wird dann immer mit dem Snapshot verglichen. Dies ist schnell und effizient und erfordert wenig zusätzlichen Testcode.
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
